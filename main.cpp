@@ -99,6 +99,8 @@ int buildEncodingTree(int nextFree) {
     //    - Push new parent index back into the heap
     // 4. Return the index of the last remaining node (root)
 
+    //I sort of don't know how to summarize this considering the specific instructions given above
+    //those instructions are just what I did.
     // create the heap object
     MinHeap heap;
 
@@ -138,6 +140,8 @@ void generateCodes(int root, string codes[]) {
     st.push({root, ""});
 
     //splits and makes node and codes, but node no wanna be made
+    //had to not use auto, I sort of just assumed that if I called
+    //the same thing as I used for siming traversal that it would work and it did
     while (!st.empty()) {
         //auto [node, codes] = st.top();
         pair<int, string> current = st.top();
@@ -147,12 +151,15 @@ void generateCodes(int root, string codes[]) {
         string code = current.second;
 
     //left node right node check for small kids, but node doesn't wanna work
+        //I found the first comment funny so I left it, but basically it just checks
+        //what the characters are
     if (leftArr[node] == -1 && rightArr[node] ==-1) {
         char ch = charArr[node];
         if (ch >= 'a' && ch <= 'z')
         codes[ch-'a'] = code;
     }
-    //make right go first so left can be checked
+    //make right go first so left can be checked,
+        //I feel like !=-1 is wrong at least in some way, but it works so good enough
     else {
         if (rightArr[node] != -1)
             st.push({rightArr[node], code + '1'});
