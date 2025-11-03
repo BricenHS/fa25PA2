@@ -139,21 +139,26 @@ void generateCodes(int root, string codes[]) {
 
     //splits and makes node and codes, but node no wanna be made
     while (!st.empty()) {
-        auto [node, codes] = st.top();
+        //auto [node, codes] = st.top();
+        pair<int, string> current = st.top();
         st.pop();
-    }
+
+        int node = current.first;
+        string code = current.second;
+
     //left node right node check for small kids, but node doesn't wanna work
     if (leftArr[node] == -1 && rightArr[node] ==-1) {
         char ch = charArr[node];
-        codes[ch-'a'] = codes;
+        codes[ch-'a'] = code;
     }
     //make right go first so left can be checked
     else {
         if (rightArr[node] != -1)
-            st.push({rightArr[node], codes + '1'});
+            st.push({rightArr[node], code + '1'});
         if (leftArr[node] != -1)
-            st.push({leftArr[node], codes + '0'});
+            st.push({leftArr[node], code + '0'});
     }
+}
 }
 
 // Step 5: Print table and encoded message
