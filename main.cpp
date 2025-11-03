@@ -149,6 +149,7 @@ void generateCodes(int root, string codes[]) {
     //left node right node check for small kids, but node doesn't wanna work
     if (leftArr[node] == -1 && rightArr[node] ==-1) {
         char ch = charArr[node];
+        if (ch >= 'a' && ch <= 'z')
         codes[ch-'a'] = code;
     }
     //make right go first so left can be checked
